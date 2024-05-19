@@ -1,7 +1,8 @@
 // ==UserScript==
 // @name        TikTok Homepage and FYP Disable Autoplay
 // @namespace   Violentmonkey Scripts
-// @match        https://www.tiktok.com/*
+// @match        https://www.tiktok.com/
+// @match        https://www.tiktok.com/foryou
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=tiktok.com
 // @run-at          document-start
 // @compatible      chrome
@@ -9,9 +10,7 @@
 // @compatible      opera
 // @compatible      edge
 // @compatible      safari
-// @compatible      brave
-// @grant       none
-// @version     0.0.2
+// @version     0.1.0
 // @author      jcosentino (https://github.com/jcosentino/TikTok-Homepage-and-FYP-Disable-Autoplay)
 // @description Pauses first video on homepage and FYP load, meant for navigation.
 // @license      MIT
@@ -20,13 +19,19 @@
 // ==/UserScript==
 
 (() => {
-  const observer = new MutationObserver(function (mutations, me) {
-  const firstVideo = document.getElementById('one-column-item-0')?.querySelector('video');
-  if(firstVideo) firstVideo.pause();
-  });
-
-  observer.observe(document, {
+  const config = {
     childList: true,
     subtree: true
-  });
+  };
+
+  const callback = () => {
+    const firstVideo = document.getElementById('one-column-item-0')?.querySelector('video');
+    if(firstVideo){
+      firstVideo.pause();
+      MutationObserver.disconnect();
+    }
+  };
+
+  const observer = new MutationObserver(callback);
+  observer.observe(document, config);
 })();
