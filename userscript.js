@@ -3,6 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match        https://www.tiktok.com/
 // @match        https://www.tiktok.com/foryou
+// @match        https://www.tiktok.com/following
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=tiktok.com
 // @run-at          document-start
 // @compatible      chrome
@@ -10,7 +11,7 @@
 // @compatible      opera
 // @compatible      edge
 // @compatible      safari
-// @version     0.1.0
+// @version     0.2.0
 // @author      jcosentino (https://github.com/jcosentino/TikTok-Homepage-and-FYP-Disable-Autoplay)
 // @description Pauses first video on homepage and FYP load, meant for navigation.
 // @license      MIT
